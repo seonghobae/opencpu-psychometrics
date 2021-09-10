@@ -7,6 +7,6 @@ RUN \
   apt-get -y dist-upgrade && \
   apt-get -y upgrade 
 RUN \
-  R -e "options(repos = 'https://cran.asia'); install.packages('BiocManager'); BiocManager::install(version = 'devel', ask = F)"
+  R -e "options(repos = 'https://cran.asia'); install.packages('BiocManager'); BiocManager::install(version = 'devel', ask = F);  BiocManager::install('ctv', ask = F); ctv::install.views('Psychometrics')"
 EXPOSE 8004
 CMD ["apachectl", "-D", "FOREGROUND"]
