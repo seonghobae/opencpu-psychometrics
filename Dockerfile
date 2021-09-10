@@ -7,6 +7,6 @@ RUN \
   apt-get -y dist-upgrade && \
   apt-get -y upgrade 
 RUN \
-  R -e "options(repos = 'https://cran.asia'); update.packages(ask = F)"
+  R -e "options(repos = 'https://cran.asia'); install.packages('BiocManager'); BiocManager::install(version = 'devel', ask = F)"
 EXPOSE 8004
 CMD ["apachectl", "-D", "FOREGROUND"]
