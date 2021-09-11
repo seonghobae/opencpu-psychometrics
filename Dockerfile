@@ -6,7 +6,7 @@ RUN \
   apt-get update && \
   apt-get -y dist-upgrade && \
   apt-get -y upgrade && \
-  apt-get -y install libv8-dev libcairo2-dev libomp-dev libmpfr-dev tcl-dev
+  apt-get -y install libv8-dev libcairo2-dev libomp-dev libmpfr-dev tcl-dev tk-dev
 RUN \
   R -e "options(repos = 'https://cran.asia'); install.packages('BiocManager'); BiocManager::install(version = 'devel', ask = F);  BiocManager::install('ctv', ask = F); ctv::install.views(c('Psychometrics', 'SocialSciences'))"
 EXPOSE 8004
