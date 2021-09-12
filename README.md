@@ -12,7 +12,6 @@ The unofficial fork of opencpu-server with Pre-installed Psychometrics libraries
 # How to use this?
 ## Nightly Build (with Auto CRAN library updates)
 - docker run --name opencpu-psychometrics -d -it -p 8004:8004 --restart always ghcr.io/seonghobae/opencpu-psychometrics:nightly
-- docker run --name opencpu-psychometrics -d -it -p 8004:8004 --restart always seonghobae/opencpu-psychometrics:nightly
 
 ## Latest Build
 - docker run --name opencpu-psychometrics -d -it -p 8004:8004 --restart always ghcr.io/seonghobae/opencpu-psychometrics:latest
