@@ -10,7 +10,7 @@ The unofficial fork of opencpu-server with Pre-installed Psychometrics libraries
 - Automatic update will be includes updates of CRAN libraries and Ubuntu apt updates.
 
 # How to use this?
-## Nightly Build (with Auto CRAN library updates)
+## Nightly Build (with CRAN library Auto updates)
 - docker run --name opencpu-psychometrics -d -it -p 8004:8004 --restart always ghcr.io/seonghobae/opencpu-psychometrics:nightly
 
 ## Latest Build
