@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM seonghobae/opencpu-psychometrics:latest
+FROM seonghobae/opencpu-psychometrics:base
 WORKDIR /root/
 ENV DEBIAN_FRONTEND noninteractive
 RUN \
