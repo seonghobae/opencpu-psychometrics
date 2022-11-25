@@ -1,11 +1,17 @@
-# syntax=docker/dockerfile:1
-FROM seonghobae/opencpu-psychometrics:latest
-WORKDIR /root/
-ENV DEBIAN_FRONTEND noninteractive
-RUN \
-  apt-get update && \
-  apt-get -y full-upgrade && apt-get install -y systemd unattended-upgrades ntpsec && systemctl enable ntpsec && systemctl enable unattended-upgrades 
-RUN \
-  R -e "options(timeout=10000); options(repos = 'https://cran.asia'); options(BioC_mirror = 'https://cran.asia'); update.packages(ask = F)"
-EXPOSE 8004
-CMD ["apachectl", "-D", "FOREGROUND"]
+FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
+WORKDIR /app
+RUN apt-get update && \
+    apt-get install -y unattended-upgrades ntpsec git wget \
+    lsb-release software-properties-common gnupg build-essential dirmngr libopenblas-dev && \
+    unattended-upgrades && \
+    add-apt-repository -y ppa:opencpu/opencpu-2.2 && \
+    wget -qO- https://cran.asia/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
+    add-apt-repository "deb https://cran.asia/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
+    apt-get update && apt-get full-upgrade -y && \
+    apt-get install -y r-base r-base-dev opencpu-server rstudio-server && \
+    apt-get clean -y && \
+    apt-get autoremove -y && \
+    R -e "options(timeout=10000); options(repos = 'https://cran.asia'); options(BioC_mirror = 'https://cran.asia'); install.packages('BiocManager', ask = F, dependencies = TRUE, quiet = TRUE); BiocManager::install.packages(ask = F); BiocManager::install(available.packages()[,1], ask = F, dependencies = T, quiet = TRUE)"
+
+CMD ["/bin/bash", "-c", "R"]
