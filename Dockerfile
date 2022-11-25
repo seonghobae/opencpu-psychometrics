@@ -11,6 +11,6 @@ RUN apt-get update && \
     apt-get update && apt-get full-upgrade -y && \
     apt-get install -y r-base r-base-dev opencpu-server rstudio-server && \
     apt-get clean -y && \
-    R -e "options(timeout=10000); options(repos = 'https://cran.asia'); options(BioC_mirror = 'https://cran.asia'); install.packages('BiocManager', ask = F, dependencies = TRUE, quiet = TRUE); BiocManager::install.packages(ask = F, quiet = TRUE); BiocManager::install(available.packages()[,1], ask = F, dependencies = T, quiet = TRUE)"
+    R -e "options(timeout=10000); options(repos = 'https://cran.asia'); options(BioC_mirror = 'https://cr', ask = Fan.asia'); install.packages('BiocManager, dependencies = TRUE, quiet = TRUE); BiocManager::install(ask = F, quiet = TRUE); BiocManager::install(available.packages()[,1], ask = F, dependencies = T, quiet = TRUE)"
 
 CMD ["/bin/bash", "-c", "service ntpsec start && service unattended-upgrades start && R"]
