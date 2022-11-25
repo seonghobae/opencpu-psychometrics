@@ -7,7 +7,7 @@ RUN apt-get update && \
     unattended-upgrades && \
     add-apt-repository -y ppa:opencpu/opencpu-2.2 && \
     wget -qO- https://cran.asia/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
-    add-apt-repository "deb https://cran.asia/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
+    add-apt-repository -y "deb https://cran.asia/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
     apt-get update && apt-get full-upgrade -y && \
     apt-get install -y r-base r-base-dev opencpu-server rstudio-server && \
     apt-get clean -y && \
