@@ -11,6 +11,6 @@ RUN apt-get update && \
     apt-get update && apt-get full-upgrade -y && \
     apt-get install -y r-base r-base-dev opencpu-server rstudio-server && \
     apt-get clean -y && \
-    R -e "options('install.packages.compile.from.source' = 'never'); options(timeout=10000); options(repos = 'https://cran.asia'); options(BioC_mirror = 'https://cran.asia', ask = F); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(c('mirt', 'lavaan', 'brms', 'lmerTest'), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores())"
+    R -e "options('install.packages.compile.from.source' = 'never'); options(timeout=10000); options(repos = 'https://cran.asia'); options(BioC_mirror = 'https://cran.asia', ask = F); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install('miniCRAN',ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(miniCRAN::pkgDep(c('mirt', 'lavaan', 'brms', 'lmerTest')), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores())"
 
 CMD ["/bin/bash", "-c", "service ntpsec start && service unattended-upgrades start && R"]
