@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:kinetic
 ARG DEBIAN_FRONTEND=noninteractive
 WORKDIR /app
 RUN apt-get update && \
