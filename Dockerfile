@@ -13,7 +13,7 @@ RUN apt-get update && \
     bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
     apt install cmake -y && \
     apt-get clean -y && \
-    R -e "options('install.packages.compile.from.source' = 'never'); options(timeout=10000); options(repos = 'https://cran.asia'); options(BioC_mirror = 'https://cran.asia', ask = F); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install('miniCRAN',ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(miniCRAN::pkgDep(c('mirt', 'lavaan', 'brms', 'lmerTest')), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores())"
+    R -e "options('install.packages.compile.from.source' = 'never'); options(timeout=10000); options(repos = 'https://cran.asia'); options(BioC_mirror = 'https://cran.asia', ask = F); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install('miniCRAN',ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(miniCRAN::pkgDep(c('mirt', 'lavaan')), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores())"
 
 EXPOSE 8004
 CMD ["/bin/bash", "-c", "service ntpsec start && service unattended-upgrades start && service opencpu-server start && service rstudio-server start && R"]
