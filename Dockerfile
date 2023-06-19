@@ -9,7 +9,7 @@ RUN apt-get update && \
     wget -qO- https://cran.asia/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
     add-apt-repository -y "deb https://cran.asia/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
     apt-get update && apt-get full-upgrade -y && \
-    apt-get install -y r-base r-base-dev opencpu-server rstudio-server && \
+    apt-get install -y libcurl4-openssl-dev r-base r-base-dev opencpu-server rstudio-server && \
     bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
     apt install cmake -y && \
     apt-get clean -y && \
