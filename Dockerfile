@@ -1,4 +1,4 @@
-FROM ubuntu:22.10
+FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
 WORKDIR /app
 RUN apt-get update && \
