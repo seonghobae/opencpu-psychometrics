@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
 WORKDIR /app
 RUN apt-get update -y
-RUN apt-get install aptitude wget unattended-upgrades software-properties-common bash -y --no-install-recommends
+RUN apt-get install aptitude wget software-properties-common bash ntpsec git unattended-upgrades lsb-release software-properties-common gnupg build-essential  -y
 RUN add-apt-repository -y ppa:opencpu/opencpu-2.2
 RUN add-apt-repository -y "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 RUN unattended-upgrades
