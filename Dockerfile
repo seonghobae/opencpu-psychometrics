@@ -12,7 +12,7 @@ RUN add-apt-repository -y "deb https://cloud.r-project.org/bin/linux/ubuntu $(ls
     apt-get install -y libcurl4-openssl-dev r-base r-base-dev opencpu-server rstudio-server && \
     apt install cmake -y && \
     apt-get clean -y
-RUN R -e "options('install.packages.compile.from.source' = 'never'); options(timeout=100000); options(repos = 'https://cran.asia'); options(BioC_mirror = 'https://cran.asia'); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install('miniCRAN',ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(miniCRAN::pkgDep(c('mirt', 'lavaan', 'stm')), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores())"
+RUN R -e "options('install.packages.compile.from.source' = 'never'); options(timeout=100000); options(repos = 'https://cloud.r-project.org'); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install('miniCRAN',ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(miniCRAN::pkgDep(c('mirt', 'lavaan', 'stm')), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores())"
 
 EXPOSE 8004
 CMD ["/bin/bash", "-c", "service ntpsec start && service unattended-upgrades start && service opencpu-server start && service rstudio-server start && R"]
