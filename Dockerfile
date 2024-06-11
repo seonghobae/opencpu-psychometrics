@@ -11,7 +11,9 @@ RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc |
 RUN rm /var/lib/apt/lists/* -fr
 RUN aptitude update -y
 RUN aptitude install -y libgfortran-~N-dev libgcc-~N-dev libffmpeg-~N-dev
-RUN aptitude install -y libproj-dev libpoppler-glib-dev ca-certificates-java libmagick++-dev libglpk-dev libfftw3-dev libfftw3-mpi-dev libxslt1-dev libopenblas-dev libopenblas64-dev libarchive-dev libpoppler-cpp-dev libfontconfig1-dev libcurl4-openssl-dev r-base r-base-dev opencpu-server rstudio-server cmake default-jdk-headless default-jre-headless libharfbuzz-dev libfribidi-dev libcairo2-dev libopenblas-dev libpoppler-cpp0v5 libgsl-dev
+RUN aptitude install -y r-base-dev opencpu-server rstudio-server
+
+RUN aptitude install -y libproj-dev libpoppler-glib-dev ca-certificates-java libmagick++-dev libglpk-dev libfftw3-dev libfftw3-mpi-dev libxslt1-dev libarchive-dev libpoppler-cpp-dev libfontconfig1-dev libcurl4-openssl-dev cmake default-jdk-headless libharfbuzz-dev libfribidi-dev libcairo2-dev libopenblas-dev libpoppler-cpp0v5 libgsl-dev
 
 RUN R -e "options('install.packages.compile.from.source' = 'never'); options(timeout=100000); options(repos = 'https://cloud.r-project.org'); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install('miniCRAN',ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(miniCRAN::pkgDep(c('mirt', 'lavaan', 'stm', 'future.apply', 'openxlsx', 'writexl', 'readxl', 'ctv', 'LMest')), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores()); ctv::install.views(c('Psychometrics', 'MixedModels'), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores())"
 
