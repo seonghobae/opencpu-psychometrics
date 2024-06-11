@@ -4,7 +4,7 @@ WORKDIR /app
 
 # SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN apt-get update -y && apt-get install aptitude wget software-properties-common ntpsec git unattended-upgrades lsb-release software-properties-common gnupg build-essential -y --no-install-recommends
+RUN apt-get update -y && apt-get install aptitude wget software-properties-common ntpsec git unattended-upgrades lsb-release software-properties-common gnupg build-essential -y
 RUN add-apt-repository -y ppa:opencpu/opencpu-2.2
 RUN add-apt-repository -y "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
