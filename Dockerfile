@@ -11,7 +11,7 @@ RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc |
 RUN rm /var/lib/apt/lists/* -fr
 RUN aptitude update -y
 RUN aptitude install -y libgfortran-~N-dev libgcc-~N-dev libffmpeg-~N-dev
-RUN aptitude install -y opencpu-server rstudio-server
+RUN apt-get install -y opencpu-server rstudio-server
 
 RUN aptitude install -y libproj-dev libpoppler-glib-dev ca-certificates-java libmagick++-dev libglpk-dev libfftw3-dev libfftw3-mpi-dev libxslt1-dev libarchive-dev libpoppler-cpp-dev libfontconfig1-dev libcurl4-openssl-dev cmake default-jdk-headless libharfbuzz-dev libfribidi-dev libcairo2-dev libopenblas-dev libpoppler-cpp0v5 libgsl-dev
 
