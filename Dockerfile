@@ -11,7 +11,7 @@ RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc |
 RUN rm /var/lib/apt/lists/* -fr
 RUN aptitude update -y
 # Configuration failed libraries should to be add
-RUN aptitude install -y libgfortran-~N-dev libgcc-~N-dev libffmpeg-~N-dev opencpu-server libproj-dev libpoppler-glib-dev ca-certificates-java libmagick++-dev libglpk-dev libfftw3-dev libfftw3-mpi-dev libxslt1-dev libarchive-dev libpoppler-cpp-dev libfontconfig1-dev libcurl4-openssl-dev cmake default-jdk-headless libharfbuzz-dev libfribidi-dev libcairo2-dev libopenblas-dev libpoppler-cpp0v5 libgsl-dev libmariadb-dev libpq-dev libssl-dev libmysqlclient-dev libsodium-dev unixodbc-dev libudunits2-dev libmpfr-dev libgdal-dev curl locales '~n^fonts-nanum'
+RUN aptitude install -y libgfortran-~N-dev libgcc-~N-dev libffmpeg-~N-dev opencpu-server libproj-dev libpoppler-glib-dev ca-certificates-java libmagick++-dev libglpk-dev libfftw3-dev libfftw3-mpi-dev libxslt1-dev libarchive-dev libpoppler-cpp-dev libfontconfig1-dev libcurl4-openssl-dev cmake default-jdk-headless libharfbuzz-dev libfribidi-dev libcairo2-dev libopenblas-dev libpoppler-cpp0v5 libgsl-dev libmariadb-dev libpq-dev libssl-dev libmysqlclient-dev libsodium-dev unixodbc-dev libudunits2-dev libmpfr-dev libgdal-dev curl locales '~n^fonts-nanum' libfontconfig libfreetype6 xfonts-cyrillic xfonts-scalable fonts-liberation fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf ttf-ubuntu-font-family
 
 RUN localedef -f UTF-8 -i ko_KR ko_KR.UTF-8
 
