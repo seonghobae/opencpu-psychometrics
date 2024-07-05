@@ -13,7 +13,8 @@ RUN aptitude update -y
 # Configuration failed libraries should to be add
 RUN aptitude install -y libgfortran-~N-dev libgcc-~N-dev libffmpeg-~N-dev opencpu-server libproj-dev libpoppler-glib-dev ca-certificates-java libmagick++-dev libglpk-dev libfftw3-dev libfftw3-mpi-dev libxslt1-dev libarchive-dev libpoppler-cpp-dev libfontconfig1-dev libcurl4-openssl-dev cmake default-jdk-headless libharfbuzz-dev libfribidi-dev libcairo2-dev libopenblas-dev libpoppler-cpp0v5 libgsl-dev libmariadb-dev libpq-dev libssl-dev libmysqlclient-dev libsodium-dev unixodbc-dev libudunits2-dev libmpfr-dev libgdal-dev
 
-
+# add rust
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 
 RUN R -e "options('install.packages.compile.from.source' = 'never'); options(timeout=100000); options(repos = 'https://cloud.r-project.org'); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install('miniCRAN',ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(miniCRAN::pkgDep(c('psych','sqldf','pbapply', 'mirt', 'plyr', 'GDINA', 'edina', 'ggplot2', 'lpSolveAPI', 'lavaan', 'stm', 'future.apply', 'openxlsx', 'writexl', 'readxl', 'ctv', 'LMest')), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores()); ctv::install.views(c('Psychometrics', 'MixedModels'), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores())"
 
