@@ -27,11 +27,13 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
+      # Required for SBOM upload to dependency graph
+      attestations: write
 
     steps:
       - name: Checkout repository
@@ -96,3 +98,23 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+
+      # Generate SBOM for the Docker image
+      # https://github.com/anchore/sbom-action
+      - name: Generate SBOM
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: anchore/sbom-action@d94f46e13c6c62f59525ac9a1e147a99dc0b9bf5 # v0.17.0
+        with:
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push.outputs.digest }}
+          format: spdx-json
+          output-file: sbom.spdx.json
+          upload-artifact: true
+          upload-release-assets: false
+
+      # Upload SBOM to GitHub Dependency Graph
+      # https://github.com/advanced-security/spdx-dependency-submission-action
+      - name: Upload SBOM to Dependency Graph
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: advanced-security/spdx-dependency-submission-action@5530bab9ee4bbe66420ce8c8c344acf5c3b8f70d # v0.1.1
+        with:
+          filePath: sbom.spdx.json
