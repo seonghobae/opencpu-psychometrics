@@ -115,6 +115,6 @@ jobs:
       # https://github.com/advanced-security/spdx-dependency-submission-action
       - name: Upload SBOM to Dependency Graph
         if: ${{ github.event_name != 'pull_request' }}
-        uses: advanced-security/spdx-dependency-submission-action@5530bab9ee4bbe66420ce8c8c344acf5c3b8f70d # v0.1.1
+        uses: advanced-security/spdx-dependency-submission-action@5530bab9ee4bbe66420ce8c8c344acf5c3b8f70d  # v0.1.1
         with:
           filePath: sbom.spdx.json
