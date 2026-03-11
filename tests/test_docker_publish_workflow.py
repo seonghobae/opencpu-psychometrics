@@ -17,7 +17,7 @@ class DockerPublishWorkflowTest(unittest.TestCase):
     def test_workflow_configures_qemu_before_buildx_for_multi_arch_images(self) -> None:
         qemu_setup = (
             "        uses: docker/setup-qemu-action@"
-            "68827325e0b33c7199eb31dd4e31fbe9023e06e8 # v3.0.0"
+            "68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0"
         )
         buildx_setup = (
             "        uses: docker/setup-buildx-action@"
