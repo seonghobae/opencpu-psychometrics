@@ -2,9 +2,11 @@
 
 [![Docker](https://github.com/seonghobae/opencpu-psychometrics/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/seonghobae/opencpu-psychometrics/actions/workflows/docker-publish.yml)
 
-The unofficial fork of opencpu-server with Pre-installed Psychometrics libraries in R; A personal project created for use in a company project.
+The unofficial fork of opencpu-server with pre-installed
+psychometrics libraries in R; a personal project created for use in a
+company project.
 
-- Newly built with official Ubuntu 22.04 Docker image and PPA source of the OpenCPU-server.
+- Newly built with official Ubuntu 24.04 Docker image and PPA source of the OpenCPU-server.
 - Just Removed barrier of timeout limits for psychometrics libraries.
 
 ## Notes
