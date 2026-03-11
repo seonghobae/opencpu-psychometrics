@@ -8,7 +8,8 @@ The image layers Ubuntu, OpenCPU, system libraries, Rust, and a
 large R package set used for psychometrics workloads.
 GitHub Actions verifies the repository by building the image on pull
 requests and by building plus publishing it from
-`.github/workflows/docker-publish.yml` on release paths.
+`.github/workflows/docker-publish.yml` on pushes to `main`, the nightly
+schedule, and release tag paths.
 
 ## Build Pipeline
 

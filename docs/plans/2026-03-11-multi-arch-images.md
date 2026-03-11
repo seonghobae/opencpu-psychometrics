@@ -113,6 +113,7 @@ Expected: PASS
 **Files:**
 
 - Modify: `.github/workflows/docker-publish.yml`
+- Modify: `AGENTS.md`
 - Create: `tests/test_docker_publish_workflow.py`
 - Modify: `ARCHITECTURE.md`
 - Create: `docs/plans/2026-03-11-multi-arch-images-design.md`
@@ -134,6 +135,7 @@ Expected: PASS
 
 ```bash
 git add .github/workflows/docker-publish.yml \
+  AGENTS.md \
   tests/test_docker_publish_workflow.py \
   ARCHITECTURE.md \
   docs/plans/2026-03-11-multi-arch-images-design.md \
