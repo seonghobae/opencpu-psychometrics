@@ -1,5 +1,7 @@
 FROM ubuntu:24.04
 ARG DEBIAN_FRONTEND=noninteractive
+ARG R_INSTALL_NCPUS=2
+ENV R_INSTALL_NCPUS=${R_INSTALL_NCPUS}
 WORKDIR /app
 
 # SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -19,7 +21,7 @@ RUN localedef -f UTF-8 -i ko_KR ko_KR.UTF-8
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 RUN echo 'source $HOME/.cargo/env' >> $HOME/.bashrc
 
-RUN R -e "options('install.packages.compile.from.source' = 'never'); options(timeout=100000); options(repos = 'https://cloud.r-project.org'); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install('miniCRAN',ask = F, quiet = TRUE, Ncpus = parallel::detectCores()); BiocManager::install(miniCRAN::pkgDep(c('psych','sqldf','pbapply', 'mirt', 'plyr', 'GDINA', 'edina', 'ggplot2', 'lpSolveAPI', 'lavaan', 'stm', 'future.apply', 'openxlsx', 'writexl', 'readxl', 'ctv', 'LMest', 'httr', 'stringr', 'jsonlite', 'progressr')), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores()); ctv::install.views(c('Psychometrics', 'MixedModels'), ask = F, dependencies = T, quiet = TRUE, Ncpus = parallel::detectCores())"
+RUN R -e "options('install.packages.compile.from.source' = 'never'); options(timeout = 100000); options(repos = 'https://cloud.r-project.org'); options(Ncpus = as.integer(Sys.getenv('R_INSTALL_NCPUS'))); install.packages('BiocManager', dependencies = TRUE, quiet = TRUE); BiocManager::install('miniCRAN', ask = FALSE, update = FALSE, quiet = TRUE); BiocManager::install(miniCRAN::pkgDep(c('psych', 'sqldf', 'pbapply', 'mirt', 'plyr', 'GDINA', 'edina', 'ggplot2', 'lpSolveAPI', 'lavaan', 'stm', 'future.apply', 'openxlsx', 'writexl', 'readxl', 'ctv', 'LMest', 'httr', 'stringr', 'jsonlite', 'progressr')), ask = FALSE, update = FALSE, dependencies = TRUE, quiet = TRUE); ctv::install.views(c('Psychometrics', 'MixedModels'), ask = FALSE, update = FALSE, dependencies = TRUE, quiet = TRUE)"
 
 EXPOSE 8004
 CMD ["/bin/bash", "-c", "service ntpsec start && service unattended-upgrades start && service opencpu-server start && service rstudio-server start && service rstudio-server start && R"]
