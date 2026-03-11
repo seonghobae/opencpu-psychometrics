@@ -11,6 +11,8 @@
 - Docker regression checks: `python3 -m unittest discover -s tests -v`
 - Local image build probe:
   `docker build --progress=plain -t opencpu-psychometrics .`
+- Local multi-arch workflow probe:
+  `docker buildx build --platform linux/amd64,linux/arm64 --progress=plain .`
 
 ## Code style
 
